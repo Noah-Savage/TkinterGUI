@@ -1,0 +1,23 @@
+from tkinter import *
+
+window = Tk()
+window.title("Test GUI")
+window.geometry('400x400')
+
+lbl = Label(window, text="Test text:")
+lbl.grid(column=0, row=0)
+
+label2 = Label(window, text = "Check")
+label2.grid(column=0, row=5)
+
+txt = Entry(window,width=10)
+txt.insert(10, "Test")
+txt.grid(column=1, row=0)
+
+def clicker():
+    label2.configure(text = txt.get())
+
+btn = Button(window, text="New Text", command=clicker)
+btn.grid(column=2, row=0)
+
+window.mainloop()
