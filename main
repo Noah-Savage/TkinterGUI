@@ -2,22 +2,27 @@ from tkinter import *
 
 window = Tk()
 window.title("Test GUI")
-window.geometry('400x400')
+window.geometry('400x200')
 
-lbl = Label(window, text="Test text:")
+lbl = Label(window, text="First name: ")
 lbl.grid(column=0, row=0)
 
 label2 = Label(window, text = "Check")
-label2.grid(column=0, row=5)
+label2.grid(column=1, row=3)
 
 txt = Entry(window,width=10)
 txt.insert(10, "Test")
 txt.grid(column=1, row=0)
 
-def clicker():
-    label2.configure(text = txt.get())
+firstName = ""
 
-btn = Button(window, text="New Text", command=clicker)
+def clicker():
+    firstName = txt.get()
+    label2.configure(text = ("The first name is", firstName))
+
+
+
+btn = Button(window, text="Submit", command=clicker)
 btn.grid(column=2, row=0)
 
 window.mainloop()
