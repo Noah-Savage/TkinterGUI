@@ -1,28 +1,40 @@
+import tkinter as tk
 from tkinter import *
 
-window = Tk()
-window.title("Test GUI")
-window.geometry('400x200')
+window = tk.Tk()
+window.title("Name GUI")
+window.geometry('450x250')
 
-lbl = Label(window, text="First name: ")
-lbl.grid(column=0, row=0)
+firstLabel = Label(window, text="First name:")
+firstLabel.grid(column=0, row=0)
 
-label2 = Label(window, text = "Check")
-label2.grid(column=1, row=3)
+lastLabel = Label(window, text="Last name:")
+lastLabel.grid(column=0, row=1)
 
-txt = Entry(window,width=10)
-txt.insert(10, "Test")
-txt.grid(column=1, row=0)
+firstBox = Entry(window,width=10)
+firstBox.grid(column=1, row=0)
 
-firstName = ""
+lastBox = Entry(window,width=10)
+lastBox.grid(column=1, row=1)
 
-def clicker():
-    firstName = txt.get()
-    label2.configure(text = ("The first name is", firstName))
+label2 = Label(window, text="")
+label2.grid(column=0, row=2)
 
+labelName = Label(window, text="")
+labelName.grid(column=1, row=2)
 
+def clicked():
+    label2.configure(text = ("The name is"))
+    labelName.configure(text=(firstBox.get(), lastBox.get()))
+    print("you hit the button")
 
-btn = Button(window, text="Submit", command=clicker)
+def enterPush(event):
+    label2.configure(text = ("The name is"))
+    labelName.configure(text=(firstBox.get(), lastBox.get())) 
+    
+window.bind('<Return>', enterPush)
+
+btn = Button(window, text="Submit", command=clicked)
 btn.grid(column=2, row=0)
 
 window.mainloop()
