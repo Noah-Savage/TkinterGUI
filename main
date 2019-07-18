@@ -34,7 +34,9 @@ def enterPush(event):
     
 window.bind('<Return>', enterPush)
 
-btn = Button(window, text="Submit", command=clicked)
+btn = Button(window, text="Submit", command=clicked, bg='orange')
 btn.grid(column=2, row=0)
+
+firstBox.focus()
 
 window.mainloop()
