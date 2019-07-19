@@ -48,7 +48,7 @@ def enterPush(event):
     labelName.configure(text=(firstBox.get(), lastBox.get()))
     
 def clicked2():
-  if(buttonClick is True):
+  if(buttonClick is True and (firstBox.get() is not "") and (lastBox.get() is not "")):
     checkLabel.configure(text="Name has been entered!")
   else:
     checkLabel.configure(text="Name has not been entered!")
