@@ -12,6 +12,9 @@ firstLabel.grid(column=0, row=0)
 lastLabel = Label(window, text="Last name:")
 lastLabel.grid(column=0, row=1)
 
+checkLabel = Label(window, text="")
+checkLabel.grid(column=4, row=5)
+
 firstBox = Entry(window,width=10)
 firstBox.grid(column=1, row=0)
 
@@ -46,7 +49,9 @@ def enterPush(event):
     
 def clicked2():
   if(buttonClick is True):
-      print("you hit the button") 
+    checkLabel.configure(text="Name has been entered!")
+  else:
+    checkLabel.configure(text="Name has not been entered!")
     
 window.bind('<Return>', enterPush)
 
