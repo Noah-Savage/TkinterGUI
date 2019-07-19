@@ -1,9 +1,10 @@
-import tkinter as tk
-from tkinter import *
 
-window = tk.Tk()
+from tkinter import *
+from tkinter.ttk import *
+
+window = Tk()
 window.title("Name GUI")
-window.geometry('450x250')
+window.geometry('500x250')
 
 firstLabel = Label(window, text="First name:")
 firstLabel.grid(column=0, row=0)
@@ -23,19 +24,37 @@ label2.grid(column=0, row=2)
 labelName = Label(window, text="")
 labelName.grid(column=1, row=2)
 
+combo = Combobox(window, width=10)
+combo['values']= (1, 2, 3, 4, 5, "Text")
+combo.current(1) #set the selected item
+combo.grid(column=0, row=4)
+
+buttonClick = False
+
 def clicked():
+    global buttonClick
+    buttonClick = True
     label2.configure(text = ("The name is"))
     labelName.configure(text=(firstBox.get(), lastBox.get()))
-    print("you hit the button")
 
+#Allow enter key to be active
 def enterPush(event):
+    global buttonClick
+    buttonClick = True
     label2.configure(text = ("The name is"))
-    labelName.configure(text=(firstBox.get(), lastBox.get())) 
+    labelName.configure(text=(firstBox.get(), lastBox.get()))
+    
+def clicked2():
+  if(buttonClick is True):
+      print("you hit the button") 
     
 window.bind('<Return>', enterPush)
 
-btn = Button(window, text="Submit", command=clicked, bg='orange')
-btn.grid(column=2, row=0)
+btn = Button(window, text="Submit", command=clicked)
+btn.grid(column=3, row=0)
+
+check = Button(window, text="Check", command=clicked2)
+check.grid(column=4, row=4)
 
 firstBox.focus()
 
