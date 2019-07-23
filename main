@@ -3,7 +3,7 @@ from tkinter.ttk import *
 
 window = Tk()
 window.title("Name GUI")
-window.geometry('500x250')
+window.geometry('700x250')
 
 firstLabel = Label(window, text="First name:")
 firstLabel.grid(column=0, row=0)
@@ -12,7 +12,10 @@ lastLabel = Label(window, text="Last name:")
 lastLabel.grid(column=0, row=1)
 
 checkLabel = Label(window, text="")
-checkLabel.grid(column=4, row=5)
+checkLabel.grid(column=3, row=5)
+
+anotherLabel = Label(window, text="Car Model:")
+anotherLabel.grid(column=0, row=6)
 
 firstBox = Entry(window,width=10)
 firstBox.grid(column=1, row=0)
@@ -20,8 +23,14 @@ firstBox.grid(column=1, row=0)
 lastBox = Entry(window,width=10)
 lastBox.grid(column=1, row=1)
 
+anotherBox = Entry(window,width=20)
+anotherBox.grid(column=1, row=6)
+
 label2 = Label(window, text="")
 label2.grid(column=0, row=2)
+
+carLabel = Label(window, text="")
+carLabel.grid(column=3, row=6)
 
 labelName = Label(window, text="")
 labelName.grid(column=1, row=2)
@@ -31,6 +40,19 @@ combo['values']= ("Entered", "Not entered")
 combo.current(1) #set the selected item
 combo.grid(column=0, row=4)
 
+numberOne = Combobox(window, width=5)
+numberOne['values']= ("0", "1", "2", "3", "4", "5")
+numberOne.current(0) #set the selected item
+numberOne.grid(column=0, row=7)
+
+numberTwo = Combobox(window, width=5)
+numberTwo['values']= ("0", "1", "2", "3", "4", "5")
+numberTwo.current(0) #set the selected item
+numberTwo.grid(column=1, row=7)
+
+numberLabel = Label(window, text="Addition: ")
+numberLabel.grid(column=2, row=7)
+
 buttonClick = False
 
 def clicked():
@@ -38,7 +60,6 @@ def clicked():
     buttonClick = True
     label2.configure(text = ("The name is"))
     labelName.configure(text=(firstBox.get(), lastBox.get()))
-    print(combo.current())
 
 #Allow enter key to be active
 def enterPush(event):
@@ -47,12 +68,18 @@ def enterPush(event):
     label2.configure(text = ("The name is"))
     labelName.configure(text=(firstBox.get(), lastBox.get()))
     
-#Check if name has been sumbitted and is valid    
+#Check if name has been submitted and is valid    
 def clicked2():
   if(buttonClick is True and(firstBox.get() is not "") and (lastBox.get() is not "") and (combo.current() is 0)):
     checkLabel.configure(text="Name has been entered!")
   else:
     checkLabel.configure(text="Name has not been entered!")
+
+def clicked3():
+  carLabel.configure(text = anotherBox.get())
+
+def numberClick():
+  numberLabel.configure(text=numberOne.current() + numberTwo.current())
     
 window.bind('<Return>', enterPush)
 
@@ -60,7 +87,13 @@ btn = Button(window, text="Submit", command=clicked)
 btn.grid(column=3, row=0)
 
 check = Button(window, text="Check", command=clicked2)
-check.grid(column=4, row=4)
+check.grid(column=3, row=4)
+
+car = Button(window, text="Car Check", command=clicked3)
+car.grid(column=2, row=6)
+
+numberButton = Button(window, text="Calculate", command=numberClick)
+numberButton.grid(column=3, row=7)
 
 firstBox.focus()
 
