@@ -3,7 +3,7 @@ from tkinter.ttk import *
 
 window = Tk()
 window.title("Name GUI")
-window.geometry('450x400')
+window.geometry('525x400')
 
 firstLabel = Label(window, text="First name:")
 firstLabel.grid(column=0, row=0)
@@ -50,21 +50,8 @@ numberTwo['values']= ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
 numberTwo.current(0) #set the selected item
 numberTwo.grid(column=1, row=7)
 
-numberThree = Combobox(window, width=5)
-numberThree['values']= ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
-numberThree.current(0) #set the selected item
-numberThree.grid(column=0, row=8)
-
-numberFour = Combobox(window, width=5)
-numberFour['values']= ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
-numberFour.current(0) #set the selected item
-numberFour.grid(column=1, row=8)
-
 numberLabel = Label(window, text="")
 numberLabel.grid(column=2, row=7)
-
-subLabel = Label(window, text="")
-subLabel.grid(column=2, row=8)
 
 buttonClick = False
 
@@ -95,7 +82,7 @@ def addClick():
   numberLabel.configure(text=numberOne.current() + numberTwo.current())
 
 def subClick():
-	subLabel.configure(text=numberThree.current() - numberFour.current())
+	numberLabel.configure(text=numberOne.current() - numberTwo.current())
     
 window.bind('<Return>', enterPush)
 
